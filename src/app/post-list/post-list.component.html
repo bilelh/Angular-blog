@@ -2,6 +2,7 @@
 
 <ul class="list-group">
     <app-post-list-item  *ngFor="let post of postList"
+    [post]="post"
     [postTitle]="post.title"
     [postContent]="post.content"
     [postLoveIt]="post.loveIt"
