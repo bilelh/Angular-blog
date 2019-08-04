@@ -8,6 +8,15 @@ import { PostListItemComponent } from './post-list-item/post-list-item.component
 import { NewPostComponent } from './new-post/new-post.component';
 import { HeaderComponent } from './header/header.component';
 import { PostsService } from './services/posts.service';
+import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+const appRoutes: Routes = [
+  { path: 'posts', component: PostListComponent },
+  { path: 'new', component: NewPostComponent },
+  { path: '', redirectTo: 'posts', pathMatch: 'full' },
+  { path: '**', redirectTo: 'posts' }
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +28,10 @@ import { PostsService } from './services/posts.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [PostsService],
   bootstrap: [AppComponent]

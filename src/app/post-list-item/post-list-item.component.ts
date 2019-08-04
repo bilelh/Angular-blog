@@ -31,17 +31,19 @@ export class PostListItemComponent implements OnInit {
   }
 
   onIncrease() {
-    this.postLoveIt++;
+    this.postsService.handleLoveIt(this.post, 1)
   }
 
   onDecrease() {
-    this.postLoveIt--;
+    this.postsService.handleLoveIt(this.post, -1)
   }
 
   onDelete() {
-    console.log(this.post)
-    console.log("onDelete")
-    this.postsService.deletePost(this.post)
+    if (confirm('Etes-vous sûr de vouloir supprimer ce post ?')) {
+      this.postsService.deletePost(this.post)
+    } else {
+      return null
+    }
   }
 
 }

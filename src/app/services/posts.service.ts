@@ -29,14 +29,11 @@ export class PostsService {
     };
     postObject.title = title;
     postObject.content = content;
-    //postObject.id = this.posts[(this.posts.length - 1)].id + 1;
     this.posts.push(postObject);
     this.emitPosts();
   }
 
   deletePost(post:Post) {
-    console.log("deletePost service")
-    console.log(post)
     const postIndexToRemove = this.posts.findIndex(
       (postl) => {
         if (postl === post) {
@@ -45,6 +42,18 @@ export class PostsService {
       }
     );
     this.posts.splice(postIndexToRemove, 1);
+    this.emitPosts();
+  }
+
+  handleLoveIt(post:Post, value:number) {
+    const postIndexToHandle = this.posts.findIndex(
+      (postl) => {
+        if (postl === post) {
+          return true;
+        }
+      }
+    );
+    this.posts[postIndexToHandle].loveIt = this.posts[postIndexToHandle].loveIt + value ;
     this.emitPosts();
   }
 }
